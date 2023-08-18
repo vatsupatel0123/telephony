@@ -39,7 +39,7 @@ To begin using the sim_info plugin in your Flutter project, follow these steps:
 1. Open your `pubspec.yaml` file.
 2. Add the following lines to your dependencies:
 
-```
+```dart
 dependencies:
   telephony:
     git:
