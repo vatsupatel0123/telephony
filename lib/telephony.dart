@@ -13,6 +13,7 @@ part 'filter.dart';
 typedef MessageHandler(SmsMessage message);
 typedef SmsSendStatusListener(SendStatus status);
 
+@pragma('vm:entry-point')
 void _flutterSmsSetupBackgroundChannel(
     {MethodChannel backgroundChannel =
         const MethodChannel(_BACKGROUND_CHANNEL)}) async {
