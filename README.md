@@ -33,6 +33,20 @@ To use this plugin add `telephony` as a [dependency in your pubspec.yaml file](h
 ##### Versions [0.0.9](https://pub.dev/packages/telephony/versions/0.0.9) and lower are not null safe.
 ##### Versions [0.1.0](https://pub.dev/packages/telephony/versions/0.1.0) and above opt into null safety.
 
+## Installation
+To begin using the sim_info plugin in your Flutter project, follow these steps:
+
+1. Open your `pubspec.yaml` file.
+2. Add the following lines to your dependencies:
+
+```
+dependencies:
+  telephony:
+    git:
+      url: https://github.com/vatsupatel0123/telephony.git
+      ref: main
+```
+3. Run the command `flutter pub get` to install the plugin into your project.
 
 ### Setup
 Import the `telephony` package
