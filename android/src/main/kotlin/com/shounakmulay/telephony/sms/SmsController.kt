@@ -137,27 +137,24 @@ class SmsController(private val context: Context) {
 
     private fun getSmsManager(simSlot: String): SmsManager {
         var subscriptionId: Int? = null
-        if (simSlot == null) {
-            subscriptionId = SmsManager.getDefaultSmsSubscriptionId()
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                if(simSlot.toInt()==0){
-                    subscriptionId = SmsManager.getDefaultSmsSubscriptionId()
-                }else{
-                    subscriptionId = simSlot.toInt();
-                }
-            } else {
-                subscriptionId = SmsManager.getDefaultSmsSubscriptionId()
+        val subscriptionManager = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
+        val activeSubscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
+        activeSubscriptionInfoList?.forEach { info ->
+            if (info.simSlotIndex.toString() == simSlot) {
+                //Log.d("subscriptionId", info.subscriptionId.toString());
+                subscriptionId = info.subscriptionId;
             }
         }
-        //val subscriptionId = SmsManager.getDefaultSmsSubscriptionId()
+
         val smsManager = getSystemService(context, SmsManager::class.java)
             ?: throw RuntimeException("Flutter Telephony: Error getting SmsManager")
         if (subscriptionId != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                smsManager.createForSubscriptionId(subscriptionId)
+                //Log.d("set id", subscriptionId.toString());
+                smsManager.createForSubscriptionId(subscriptionId!!)
             } else {
-                SmsManager.getSmsManagerForSubscriptionId(subscriptionId)
+                //Log.d("not set id", subscriptionId.toString());
+                SmsManager.getSmsManagerForSubscriptionId(subscriptionId!!)
             }
         }
         return smsManager
