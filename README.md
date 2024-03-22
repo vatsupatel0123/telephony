@@ -43,7 +43,7 @@ To begin using the sim_info plugin in your Flutter project, follow these steps:
 telephony:
     git:
       url: https://github.com/vatsupatel0123/telephony.git
-      ref: main
+      ref: master
 ```
 3. Run the command `flutter pub get` to install the plugin into your project.
 
