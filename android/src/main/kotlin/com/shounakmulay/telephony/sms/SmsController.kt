@@ -141,7 +141,7 @@ class SmsController(private val context: Context) {
         val activeSubscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
         activeSubscriptionInfoList?.forEach { info ->
             if (info.simSlotIndex.toString() == simSlot) {
-                //Log.d("subscriptionId", info.subscriptionId.toString());
+                Log.d("subscriptionId", info.subscriptionId.toString());
                 subscriptionId = info.subscriptionId;
             }
         }
@@ -150,10 +150,10 @@ class SmsController(private val context: Context) {
             ?: throw RuntimeException("Flutter Telephony: Error getting SmsManager")
         if (subscriptionId != SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                //Log.d("set id", subscriptionId.toString());
+                Log.d("set id", subscriptionId.toString());
                 smsManager.createForSubscriptionId(subscriptionId!!)
             } else {
-                //Log.d("not set id", subscriptionId.toString());
+                Log.d("not set id", subscriptionId.toString());
                 SmsManager.getSmsManagerForSubscriptionId(subscriptionId!!)
             }
         }
